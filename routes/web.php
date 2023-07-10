@@ -14,5 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('templates.main')->with('titulo', "");
+})->name('index');
+
+Route::resource('catadors', 'CatadorController');
