@@ -7,7 +7,13 @@
 
     <div class="row">
         <div class="col">
-
+            <x-datalist 
+                title="Catador" 
+                crud="catadors" 
+                :header="['id', 'nome', 'cep', 'telefone', 'status', 'ações']" 
+                :data="$dados"
+                :hide="[true, false, true, false, false, false]" 
+            /> 
         </div>
     </div>
 @endsection

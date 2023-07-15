@@ -15,22 +15,16 @@ class Datalist extends Component
      public $title;
     public $crud;
     public $header;
-    public $fields;
     public $data;
     public $hide;
-    public $info;
-    public $remove;
 
-    public function __construct($title, $crud, $header, $fields, $data, $hide, $info, $remove)
+    public function __construct($title, $crud, $header, $data, $hide)
     {
         $this->title = $title;   
         $this->crud = $crud;   
         $this->header = $header;
-        $this->fields = $fields;
         $this->data = $data;    
         $this->hide = $hide;
-        $this->info = (array) $info;      
-        $this->remove = $remove;
     }
 
     /**
