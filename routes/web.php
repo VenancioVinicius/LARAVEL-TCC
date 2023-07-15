@@ -18,3 +18,4 @@ Route::get('/', function () {
 })->name('index');
 
 Route::resource('catadors', 'CatadorController');
+Route::resource('geradorResiduos', 'GeradorResiduoController');
