@@ -105,6 +105,8 @@ class CatadorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Catador::destroy($id);
+
+        return redirect()->route('catadors.index');
     }
 }
