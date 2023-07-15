@@ -9,7 +9,7 @@
         <div class="col">
             <x-datalist 
                 title="GeradorResiduos" 
-                crud="gerador_residuos" 
+                crud="geradorResiduos" 
                 :header="['id', 'nome', 'cep', 'telefone', 'status', 'ações']" 
                 :data="$dados"
                 :hide="[true, false, true, false, false, false]" 
