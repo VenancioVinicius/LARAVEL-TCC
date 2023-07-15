@@ -17,7 +17,7 @@ class CreateCatadorsTable extends Migration
             $table->id();
             $table->string('nome');
             $table->string('cep');
-            $table->integer('telefone');
+            $table->bigInteger('telefone');
             $table->integer('status');
             $table->softDeletes();
             $table->timestamps();

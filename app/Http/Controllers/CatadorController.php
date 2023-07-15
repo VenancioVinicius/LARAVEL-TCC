@@ -25,7 +25,7 @@ class CatadorController extends Controller
      */
     public function create()
     {
-        //
+        return view('catadors.create');
     }
 
     /**
@@ -36,7 +36,14 @@ class CatadorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Catador::create([
+            'nome' => mb_strtoupper($request->nome, 'UTF-8'),
+            'cep' => $request->cep,
+            'telefone' => $request->telefone,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('catadors.index');
     }
 
     /**
