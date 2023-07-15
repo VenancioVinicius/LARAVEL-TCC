@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\GeradorResiduo;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +14,8 @@ class GeradorResiduoController extends Controller
      */
     public function index()
     {
-        //
+        $dados = GeradorResiduo::all();
+        return view('geradorResiduos.index', compact('dados'));
     }
 
     /**
@@ -23,7 +25,7 @@ class GeradorResiduoController extends Controller
      */
     public function create()
     {
-        //
+        return view('geradorResiduos.create');
     }
 
     /**
