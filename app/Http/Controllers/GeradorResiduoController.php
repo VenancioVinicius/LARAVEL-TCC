@@ -36,7 +36,14 @@ class GeradorResiduoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        GeradorResiduo::create([
+            'nome' => mb_strtoupper($request->nome, 'UTF-8'),
+            'cep' => $request->cep,
+            'telefone' => $request->telefone,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->route('geradorResiduos.index');
     }
 
     /**
