@@ -65,7 +65,11 @@ class CatadorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dados = Catador::find($id);
+
+        if(!isset($dados)) { return "<h1>ID: $id não encontrado!</h1>"; }
+
+        return view('catadors.edit', compact('dados')); 
     }
 
     /**
@@ -77,7 +81,20 @@ class CatadorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $obj = Catador::find($id);
+
+        if(!isset($obj)) { return "<h1>ID: $id não encontrado!"; }
+
+        $obj->fill([
+            'nome' => mb_strtoupper($request->nome, 'UTF-8'),
+            'cep' => $request->cep,
+            'telefone' => $request->telefone,
+            'status' => $request->status
+        ]);
+
+        $obj->save();
+
+        return redirect()->route('catadors.index');
     }
 
     /**
