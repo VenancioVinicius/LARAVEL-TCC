@@ -105,6 +105,8 @@ class GeradorResiduoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        GeradorResiduo::destroy($id);
+
+        return redirect()->route('geradorResiduos.index');
     }
 }
