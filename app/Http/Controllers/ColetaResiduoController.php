@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\ColetaResiduo;
+use App\Models\GeradorResiduo;
 
 use Illuminate\Http\Request;
 
@@ -13,7 +15,7 @@ class ColetaResiduoController extends Controller
      */
     public function index()
     {
-        return view('coletaResiduos.index');
+        
     }
 
     /**
@@ -23,7 +25,8 @@ class ColetaResiduoController extends Controller
      */
     public function create()
     {
-        //
+        $dados_GerRes = GeradorResiduo::where('status', '=', 0)->get();
+        return view('coletaResiduos.create', compact('dados_GerRes'));
     }
 
     /**
@@ -34,7 +37,13 @@ class ColetaResiduoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        ColetaResiduo::create([
+            'geradorResiduo_id' => $request->geradorResiduo_id,
+            'residuo' => $request->residuo,
+            'peso' => $request->peso,
+        ]);
+
+        return redirect()->route('coletaResiduos.create');
     }
 
     /**

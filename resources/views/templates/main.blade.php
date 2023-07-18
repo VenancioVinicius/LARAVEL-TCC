@@ -37,7 +37,7 @@
                                 <span class="ps-1 text-white">Coletas</span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{route('coletaResiduos.index') }}" class="dropdown-item">Nova/Inicia</a></li>
+                                <li><a href="{{route('coletaResiduos.create') }}" class="dropdown-item">Nova/Inicia</a></li>
                                 <li><a href="" class="dropdown-item">Em Aberto</a></li>
                                 <li><a href="" class="dropdown-item">Recebida</a></li>
                                 <li><a href="" class="dropdown-item">Em Atendimento</a></li>
