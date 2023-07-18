@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\GeradorResiduo;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,6 +16,9 @@ class CreateColetaResiduosTable extends Migration
     {
         Schema::create('coleta_residuos', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('GeradorResiduo_id')->references('id')->on('geradorResiduo');
+            $table->string('residuo');
+            $table->bigInteger('peso');
             $table->timestamps();
         });
     }
