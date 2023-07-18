@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ColetaResiduo extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['geradorResiduo_id', 'residuo', 'peso'];
 }
