@@ -9,5 +9,9 @@ class ColetaResiduo extends Model
 {
     use HasFactory;
 
+    public function geradorResiduo(){
+        return $this->belongsTo('\App\Models\GeradorResiduo');
+    }
+
     protected $fillable = ['geradorResiduo_id', 'residuo', 'peso'];
 }

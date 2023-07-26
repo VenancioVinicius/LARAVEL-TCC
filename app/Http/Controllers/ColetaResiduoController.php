@@ -37,6 +37,21 @@ class ColetaResiduoController extends Controller
      */
     public function store(Request $request)
     {
+
+        $regras = [
+            'geradorResiduo_id' => 'required',
+            'residuo' => 'required|max:50|min:1',
+            'peso' => 'required|max:30|min:1',
+        ];
+
+        $msgs = [
+            "required" => "O preenchimento do campo [:attribute] é obrigatório!",
+            "max" => "O campo [:attribute] possui tamanho máximo de [:max] caracteres!",
+            "min" => "O campo [:attribute] possui tamanho mínimo de [:min] caracteres!",
+        ];
+
+        $request->validate($regras, $msgs);
+
         ColetaResiduo::create([
             'geradorResiduo_id' => $request->geradorResiduo_id,
             'residuo' => $request->residuo,

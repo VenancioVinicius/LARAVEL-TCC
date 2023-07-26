@@ -11,5 +11,9 @@ class GeradorResiduo extends Model
     use HasFactory;
     use SoftDeletes;
 
+    public function coletaResiduo(){
+        return $this->hasMany('\App\Models\ColetaResiduo');
+    }
+
     protected $fillable = ['nome', 'cep', 'telefone', 'status'];
 }
