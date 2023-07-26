@@ -54,7 +54,6 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{{route('catadors.index')}}" class="dropdown-item">Catador</a></li>
                                 <li><a href="{{route('geradorResiduos.index')}}" class="dropdown-item">Gerador Residuos</a></li>
-                                <li><a href="" class="dropdown-item">Veterinários</a></li>
                             </ul>
                         </li>
                         <li class="nav-item ps-2 me-3">

@@ -36,6 +36,23 @@ class GeradorResiduoController extends Controller
      */
     public function store(Request $request)
     {
+
+        $regras = [
+            'nome' => 'required|max:50|min:4',
+            'cep' => 'required|max:50|min:4',
+            'telefone' => 'required|max:11|min:9',
+            'status' => 'required',
+        ];
+
+        $msgs = [
+            "required" => "O preenchimento do campo [:attribute] é obrigatório!",
+            "max" => "O campo [:attribute] possui tamanho máximo de [:max] caracteres!",
+            "min" => "O campo [:attribute] possui tamanho mínimo de [:min] caracteres!",
+            "unique" => "Já existe um endereço cadastrado com esse [:attribute]!"
+        ];
+
+        $request->validate($regras, $msgs);
+
         GeradorResiduo::create([
             'nome' => mb_strtoupper($request->nome, 'UTF-8'),
             'cep' => $request->cep,

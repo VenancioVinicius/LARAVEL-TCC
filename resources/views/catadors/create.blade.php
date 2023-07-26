@@ -12,11 +12,16 @@
                 <div class="form-floating mb-3">
                     <input 
                         type="text" 
-                        class="form-control" 
+                        class="form-control {{ $errors->has('nome') ? 'is-invalid' : '' }}" 
                         name="nome" 
                         placeholder="Nome"
                         value="{{old('nome')}}"
                     />
+                    @if($errors->has('nome'))
+                        <div class='invalid-feedback'>
+                            {{ $errors->first('nome') }}
+                        </div>
+                    @endif
                     <label for="nome">Nome do Catador</label>
                 </div>
             </div>
@@ -26,11 +31,16 @@
                 <div class="form-floating mb-3">
                     <input 
                         type="text" 
-                        class="form-control" 
+                        class="form-control {{ $errors->has('cep') ? 'is-invalid' : '' }}" 
                         name="cep" 
                         placeholder="Cep"
                         value="{{old('cep')}}"
                     />
+                    @if($errors->has('cep'))
+                        <div class='invalid-feedback'>
+                            {{ $errors->first('cep') }}
+                        </div>
+                    @endif
                     <label for="cep">Balneario</label>
                 </div>
             </div>
@@ -40,22 +50,32 @@
                 <div class="form-floating mb-3">
                     <input 
                         type="integer" 
-                        class="form-control" 
+                        class="form-control {{ $errors->has('telefone') ? 'is-invalid' : '' }}" 
                         name="telefone" 
                         placeholder="Telefone"
                         value="{{old('telefone')}}"
                     />
+                    @if($errors->has('telefone'))
+                        <div class='invalid-feedback'>
+                            {{ $errors->first('telefone') }}
+                        </div>
+                    @endif
                     <label for="telefone">Telefone</label>
                 </div>
             </div>
         </div>
         <div class="btn-floating mb-3 btn-floating mb-3" data-toggle="buttons">
-            <label class="btn btn-secondary active">
+            <label class="btn btn-secondary active {{ $errors->has('status') ? 'is-invalid' : '' }}">
                 <input type="radio" name="status" id="ativo" value="0"> Ativo
             </label>
             <label class="btn btn-secondary">
                 <input type="radio" name="status" id="inativo" value="1"> Inativo
             </label>
+            @if($errors->has('status'))
+                <div class='invalid-feedback'>
+                    {{ $errors->first('status') }}
+                </div>
+            @endif
         </div>
         <div class="row">
             <div class="col">
