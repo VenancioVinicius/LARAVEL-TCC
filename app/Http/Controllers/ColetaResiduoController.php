@@ -52,13 +52,17 @@ class ColetaResiduoController extends Controller
 
         $request->validate($regras, $msgs);
 
-        ColetaResiduo::create([
-            'geradorResiduo_id' => $request->geradorResiduo_id,
-            'residuo' => $request->residuo,
-            'peso' => $request->peso,
-        ]);
+        $obj_geradorResiduo = GeradorResiduo::find($request->geradorResiduo_id);
 
-        return redirect()->route('coletaResiduos.create');
+        if(isset($obj_geradorResiduo)){   
+            $obj_coletaResiduo = new ColetaResiduo();
+            $obj_coletaResiduo -> geradorResiduo()->associate($obj_geradorResiduo);
+            $obj_coletaResiduo -> residuo = $request -> residuo;
+            $obj_coletaResiduo -> peso = $request -> peso;
+            $obj_coletaResiduo->save();
+            return redirect()->route('coletaResiduos.create');
+        }
+
     }
 
     /**
