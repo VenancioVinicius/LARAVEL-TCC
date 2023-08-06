@@ -19,6 +19,17 @@
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             </div>
 
+            <!-- User Type -->
+            <div class="mt-4">
+                <select name="type_id" class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                    @foreach($types as $item)
+                        <option value="{{$item->id}}">
+                            {{ $item->nome }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
             <!-- Email Address -->
             <div class="mt-4">
                 <x-label for="email" :value="__('Email')" />

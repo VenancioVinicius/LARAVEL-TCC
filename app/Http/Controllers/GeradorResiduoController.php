@@ -14,8 +14,14 @@ class GeradorResiduoController extends Controller
      */
     public function index()
     {
+        if(!PermisssionController::isAuthorized('geradorResiduos.index')) {
+            abort(403);
+        }
+
         $dados = GeradorResiduo::all();
-        return view('geradorResiduos.index', compact('dados'));
+        $permissions = session('user_permissions');
+
+        return view('geradorResiduos.index', compact('dados', 'permissions'));
     }
 
     /**
@@ -25,6 +31,10 @@ class GeradorResiduoController extends Controller
      */
     public function create()
     {
+        if(!PermisssionController::isAuthorized('geradorResiduos.create')) {
+            abort(403);
+        }
+
         return view('geradorResiduos.create');
     }
 
@@ -82,6 +92,10 @@ class GeradorResiduoController extends Controller
      */
     public function edit($id)
     {
+        if(!PermisssionController::isAuthorized('geradorResiduos.edit')) {
+            abort(403);
+        }
+
         $dados = GeradorResiduo::find($id);
 
         if(!isset($dados)) { return "<h1>ID: $id não encontrado!</h1>"; }
@@ -122,6 +136,9 @@ class GeradorResiduoController extends Controller
      */
     public function destroy($id)
     {
+        if(!PermisssionController::isAuthorized('geradorResiduos.destroy')) {
+            abort(403);
+        }
         GeradorResiduo::destroy($id);
 
         return redirect()->route('geradorResiduos.index');

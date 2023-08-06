@@ -18,7 +18,10 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+    return view('templates.main')->with('titulo', "");
+})->middleware(['auth'])->name('index');
+
+Route::resource('geradorResiduos', 'GeradorResiduoController')->middleware(['auth']);
+Route::resource('coletaResiduos', 'ColetaResiduoController')->middleware(['auth']);
 
 require __DIR__.'/auth.php';
