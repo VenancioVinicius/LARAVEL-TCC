@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('templates.main')->with('titulo', "");
-})->name('index');
+    return view('welcome');
+});
 
-Route::resource('catadors', 'CatadorController');
-Route::resource('geradorResiduos', 'GeradorResiduoController');
-Route::resource('coletaResiduos','ColetaResiduoController');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
