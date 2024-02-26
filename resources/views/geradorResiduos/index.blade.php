@@ -10,9 +10,9 @@
             <x-datalist 
                 title="GeradorResiduos" 
                 crud="geradorResiduos" 
-                :header="['nome', 'cep', 'telefone', 'status', 'ações']" 
+                :header="['id', 'nome', 'cep', 'telefone', 'status', 'ações']" 
                 :data="$dados"
-                :hide="[true, true, false, false, false]" 
+                :hide="[true, true, true, false, false, false]" 
             /> 
         </div>
     </div>
