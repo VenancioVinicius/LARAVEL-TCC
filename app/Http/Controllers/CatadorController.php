@@ -14,8 +14,15 @@ class CatadorController extends Controller
      */
     public function index()
     {
+
+        if(!PermisssionController::isAuthorized('catadors.index')){
+            abort(403);
+        }
+
         $dados = Catador::all();
-        return view('catadors.index', compact('dados'));
+        $permissions = session('user_permissions');
+
+        return view('catadors.index', compact('dados', 'permissions'));
     }
 
     /**
