@@ -14,6 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-        $this->call(CatadorSeeder::class, false, ['total' => 5]);
+        $this->call(PermissionSeeder::class);
     }
 }
