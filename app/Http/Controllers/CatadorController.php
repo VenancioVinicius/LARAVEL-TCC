@@ -93,6 +93,10 @@ class CatadorController extends Controller
      */
     public function edit($id)
     {
+        if(!PermisssionController::isAuthorized('catadors.create')){
+            abort(403);
+        }
+
         $dados = Catador::find($id);
 
         if(!isset($dados)) { return "<h1>ID: $id não encontrado!</h1>"; }
