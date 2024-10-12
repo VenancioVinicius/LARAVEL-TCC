@@ -1,5 +1,5 @@
 <!-- Herda o layout padrão definido no template "main" -->
-@extends('templates.main', ['titulo' => "Catador", 'rota' => "catadors.create"])
+@extends('templates.main', ['titulo' => "Catador", 'rota' => "catadors.create", 'permission' => $permissions['catadors.create']])
 <!-- Preenche o conteúdo da seção "titulo" -->
 @section('titulo') Catadores @endsection
 <!-- Preenche o conteúdo da seção "conteudo" -->

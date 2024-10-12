@@ -32,6 +32,10 @@ class CatadorController extends Controller
      */
     public function create()
     {
+        if(!PermisssionController::isAuthorized('catadors.create')){
+            abort(403);
+        }
+
         return view('catadors.create');
     }
 
