@@ -114,6 +114,8 @@ class ColetaResiduoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ColetaResiduo::destroy($id);
+
+        return redirect()->route('coletaResiduos.index');
     }
 }
