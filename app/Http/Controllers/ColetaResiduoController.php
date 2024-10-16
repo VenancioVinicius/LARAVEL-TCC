@@ -15,7 +15,14 @@ class ColetaResiduoController extends Controller
      */
     public function index()
     {
-        
+        if(!PermisssionController::isAuthorized('coletaResiduos.index')){
+            abort(403);
+        }
+
+        $dados = ColetaResiduo::all();
+        $permissions = session('user_permissions');
+
+        return view('coletaResiduos.index', compact('dados','permissions'));
     }
 
     /**
