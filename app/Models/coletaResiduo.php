@@ -13,5 +13,5 @@ class ColetaResiduo extends Model
         return $this->belongsTo('\App\Models\GeradorResiduo');
     }
 
-    protected $fillable = ['geradorResiduo_id', 'residuo', 'peso'];
+    protected $fillable = ['geradorResiduo_id', 'geradorResiduo_nome', 'residuo', 'peso'];
 }
