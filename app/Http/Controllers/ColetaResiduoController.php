@@ -91,7 +91,15 @@ class ColetaResiduoController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(!PermisssionController::isAuthorized('coletaResiduos.edit')){
+            abort(403);
+        }
+
+        $dados = ColetaResiduo::find($id);
+
+        if(!isset($dados)) { return "<h1>ID: $id não encontrado!</h1>"; }
+
+        return view('coletaResiduos.edit', compact('dados')); 
     }
 
     /**
@@ -103,7 +111,14 @@ class ColetaResiduoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $obj = ColetaResiduo::find($id);
+
+        if(!isset($obj)) { return "<h1>ID: $id não encontrado!"; }
+
+        $obj->fill([
+            
+        ]);
+
     }
 
     /**
