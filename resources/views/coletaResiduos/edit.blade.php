@@ -1,24 +1,31 @@
 <!-- Herda o layout padrão definido no template "main" -->
-@extends('templates.main', ['titulo' => "Nova Coleta de Resíduo"])
+@extends('templates.main', ['titulo' => "Alterar Coleta de Resíduo"])
 <!-- Preenche o conteúdo da seção "titulo" -->
-@section('titulo') Nova Coleta de Resíduo @endsection
+@section('titulo') Alterar Coleta de Resíduo @endsection
 <!-- Preenche o conteúdo da seção "conteudo" -->
 @section('conteudo')
 
-    <form action="{{ route('coletaResiduos.update', $dados['$id']) }}" method="POST">
+
+    <form action="{{ route('coletaResiduos.update', $dados->id) }}" method="POST">
+        
         @csrf
         @method('PUT')
         <div class="row">
             <div class="col" >
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01" color="#00FF00">Gerador de Resíduos</label>
-                    <select name="geradorResiduo_id" class="form-control {{ $errors->has('geradorResiduo_id') ? 'is-invalid' : '' }}">
-                        @foreach ($dados as $key)
-                            <option value="{{ $key->id }}" @if($key->status == 0) selected="true" @endif>
+                    <select name="gerador_residuo_id" class="form-control {{ $errors->has('gerador_residuo_id') ? 'is-invalid' : '' }}">
+                        @foreach ($dados_GerRes as $key)
+                            <option value="{{ $key->id }}" @if($key->status == 0 && $key->id == $dados['gerador_residuo_id']) selected="true" @endif>
                                 {{ $key->nome }}
                             </option>
                         @endforeach
                     </select>
+                    @if($errors->has('gerador_residuo_id'))
+                        <div class='invalid-feedback'>
+                            {{ $errors->first('gerador_residuo_id') }}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -32,11 +39,6 @@
                         placeholder="Residuo"
                         value="{{$dados['residuo']}}"
                     />
-                    @if($errors->has('residuo'))
-                        <div class='invalid-feedback'>
-                            {{ $errors->first('residuo') }}
-                        </div>
-                    @endif
                     <label for="residuo">Residuo</label>
                 </div>
             </div>
@@ -51,11 +53,6 @@
                         placeholder="Peso"
                         value="{{$dados['peso']}}"
                     />
-                    @if($errors->has('peso'))
-                        <div class='invalid-feedback'>
-                            {{ $errors->first('peso') }}
-                        </div>
-                    @endif
                     <label for="peso">Quantidade Estimada (kg)</label>
                 </div>
             </div>

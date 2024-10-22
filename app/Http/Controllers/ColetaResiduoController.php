@@ -96,10 +96,11 @@ class ColetaResiduoController extends Controller
         }
 
         $dados = ColetaResiduo::find($id);
+        $dados_GerRes = GeradorResiduo::where('status', '=', 0)->get();
 
         if(!isset($dados)) { return "<h1>ID: $id não encontrado!</h1>"; }
 
-        return view('coletaResiduos.edit', compact('dados')); 
+        return view('coletaResiduos.edit', compact('dados', 'dados_GerRes')); 
     }
 
     /**
@@ -115,9 +116,29 @@ class ColetaResiduoController extends Controller
 
         if(!isset($obj)) { return "<h1>ID: $id não encontrado!"; }
 
+        $regras = [
+            'gerador_residuo_id' => 'required',
+            'residuo' => 'required|max:50|min:1',
+            'peso' => 'required|max:30|min:1',
+        ];
+
+        $msgs = [
+            "required" => "O preenchimento do campo [:attribute] é obrigatório!",
+            "max" => "O campo [:attribute] possui tamanho máximo de [:max] caracteres!",
+            "min" => "O campo [:attribute] possui tamanho mínimo de [:min] caracteres!",
+        ];
+
+        $request->validate($regras, $msgs);
+
         $obj->fill([
-            
+            'gerador_residuo_id' => $request->gerador_residuo_id,
+            'residuo' => $request->residuo,
+            'peso' => $request->peso,
         ]);
+
+        $obj->save();
+
+        return redirect()->route('coletaResiduos.index');
 
     }
 
