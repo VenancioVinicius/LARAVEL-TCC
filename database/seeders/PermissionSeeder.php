@@ -76,7 +76,7 @@ class PermissionSeeder extends Seeder
             'permissao' => '1',
             'type_id' => '1',],
 
-            ['id' => '1',
+            ['id' => '12',
             'regra' => 'catadors.index',
             'permissao' => '1',
             'type_id' => '1',],
