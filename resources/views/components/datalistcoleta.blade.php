@@ -22,7 +22,7 @@
                 @foreach ($data as $item)
                     <tr>
                         <td class="d-none d-md-table-cell">{{ $item[$header[0]] }}</td>
-                        <td>{{ $item[$header[1]] }}</td>
+                        @isset($item->GeradorResiduo)<td>{{$item->GeradorResiduo->nome}}</td>@endisset
                         <td class="d-none d-md-table-cell">{{ $item[$header[2]] }}</td>
                         <td class="d-none d-md-table-cell">{{ $item[$header[3]] }}</td>
 

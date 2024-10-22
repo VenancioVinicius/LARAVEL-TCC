@@ -10,7 +10,7 @@
             <x-datalistcoleta
                 title="Em Aberto" 
                 crud="coletaResiduos" 
-                :header="['id', 'gerador_residuo_id', 'residuo', 'peso', 'ações']" 
+                :header="['id', 'gerador_residuo', 'residuo', 'peso', 'ações']" 
                 :data="$dados"
                 :hide="[true, true, true, false, false]" 
             /> 
