@@ -61,7 +61,7 @@ class ColetaResiduoController extends Controller
 
         $obj_geradorResiduo = GeradorResiduo::find($request->geradorResiduo_id);
 
-        if(isset($obj_geradorResiduo)){   
+        if(isset($obj_geradorResiduo)&&isset($obj_geradorResiduonome)){   
             $obj_coletaResiduo = new ColetaResiduo();
             $obj_coletaResiduo -> geradorResiduo()->associate($obj_geradorResiduo);
             $obj_coletaResiduo -> residuo = $request -> residuo;

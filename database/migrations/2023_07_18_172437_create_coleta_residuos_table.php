@@ -17,7 +17,6 @@ class CreateColetaResiduosTable extends Migration
         Schema::create('coleta_residuos', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('gerador_residuo_id')->references('id')->on('geradorResiduo');
-            $table->string('gerador_residuo_nome')->references('nome')->on('geradorResiduo');
             $table->string('residuo');
             $table->bigInteger('peso');
             $table->softDeletes();
