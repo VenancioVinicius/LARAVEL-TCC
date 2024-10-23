@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Recebido;
+use App\Models\ColetaResiduo;
 
 use Illuminate\Http\Request;
+
+use function GuzzleHttp\Promise\all;
 
 class RecebidoController extends Controller
 {
@@ -13,7 +17,14 @@ class RecebidoController extends Controller
      */
     public function index()
     {
-        //
+        if(!PermisssionController::isAuthorized('coletaResiduos.index')){
+            abort(403);
+        }
+
+        $dados = ColetaResiduo::all();
+        $permissions = session('user_permissions');
+
+        return view('recebidos.index', compact('dados', 'permissions'));
     }
 
     /**
