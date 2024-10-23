@@ -19,6 +19,7 @@ class CreateColetaResiduosTable extends Migration
             $table->unsignedBigInteger('gerador_residuo_id')->references('id')->on('geradorResiduo');
             $table->string('residuo');
             $table->bigInteger('peso');
+            $table->integer('status');
             $table->softDeletes();
             $table->timestamps();
         });

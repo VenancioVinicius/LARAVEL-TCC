@@ -49,6 +49,7 @@ class ColetaResiduoController extends Controller
             'geradorResiduo_id' => 'required',
             'residuo' => 'required|max:50|min:1',
             'peso' => 'required|max:30|min:1',
+            'status' => 'required',
         ];
 
         $msgs = [
@@ -66,6 +67,7 @@ class ColetaResiduoController extends Controller
             $obj_coletaResiduo -> geradorResiduo()->associate($obj_geradorResiduo);
             $obj_coletaResiduo -> residuo = $request -> residuo;
             $obj_coletaResiduo -> peso = $request -> peso;
+            $obj_coletaResiduo -> status = $request -> status;
             $obj_coletaResiduo->save();
             return redirect()->route('coletaResiduos.create');
         }
@@ -120,6 +122,7 @@ class ColetaResiduoController extends Controller
             'gerador_residuo_id' => 'required',
             'residuo' => 'required|max:50|min:1',
             'peso' => 'required|max:30|min:1',
+            'status' => 'required',
         ];
 
         $msgs = [
@@ -134,6 +137,7 @@ class ColetaResiduoController extends Controller
             'gerador_residuo_id' => $request->gerador_residuo_id,
             'residuo' => $request->residuo,
             'peso' => $request->peso,
+            'status' => $request->status,
         ]);
 
         $obj->save();

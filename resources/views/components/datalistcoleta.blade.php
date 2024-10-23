@@ -25,6 +25,7 @@
                         @isset($item->GeradorResiduo)<td>{{$item->GeradorResiduo->nome}}</td>@endisset
                         <td class="d-none d-md-table-cell">{{ $item[$header[2]] }}</td>
                         <td class="d-none d-md-table-cell">{{ $item[$header[3]] }}</td>
+                        <td class="d-none d-md-table-cell">{{ $item[$header[4]] }}</td>
 
                         <td>
                             <a href= "{{ route($crud.'.edit', $item[$header[0]]) }}" class="btn btn-success">

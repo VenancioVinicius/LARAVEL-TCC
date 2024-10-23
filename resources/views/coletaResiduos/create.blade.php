@@ -64,6 +64,19 @@
                 </div>
             </div>
         </div>
+        <div class="btn-floating mb-3 btn-floating mb-3" data-toggle="buttons">
+            <label class="btn btn-secondary active {{ $errors->has('status') ? 'is-invalid' : '' }}">
+                <input type="radio" name="status" id="ativo" value="0"> Ativo
+            </label>
+            <label class="btn btn-secondary">
+                <input type="radio" name="status" id="inativo" value="1"> Inativo
+            </label>
+            @if($errors->has('status'))
+                <div class='invalid-feedback'>
+                    {{ $errors->first('status') }}
+                </div>
+            @endif
+        </div>
         <div class="row">
             <div class="col">
                 <a href="javascript:document.querySelector('form').submit();" class="btn btn-success btn-block align-content-center">
