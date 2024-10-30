@@ -4,16 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Catador extends Model
+class Residuo extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     public function coletaResiduo(){
         return $this->hasMany('\App\Models\ColetaResiduo');
     }
-
-    protected $fillable = ['nome', 'cep', 'telefone', 'status'];
 }

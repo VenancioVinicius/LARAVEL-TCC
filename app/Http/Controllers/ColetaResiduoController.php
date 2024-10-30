@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use App\Models\ColetaResiduo;
 use App\Models\GeradorResiduo;
+use App\Models\Residuo;
+use App\Models\Status;
 
 use Illuminate\Http\Request;
 
@@ -33,7 +35,10 @@ class ColetaResiduoController extends Controller
     public function create()
     {
         $dados_GerRes = GeradorResiduo::where('status', '=', 0)->get();
-        return view('coletaResiduos.create', compact('dados_GerRes'));
+        $dados_Res = Residuo::all();
+        $dados_Sts = Status::where('id', '=', 1)->get();
+
+        return view('coletaResiduos.create', compact('dados_GerRes', 'dados_Res', 'dados_Sts'));
     }
 
     /**
@@ -47,9 +52,9 @@ class ColetaResiduoController extends Controller
 
         $regras = [
             'geradorResiduo_id' => 'required',
-            'residuo' => 'required|max:50|min:1',
+            'residuo_id' => 'required',
             'peso' => 'required|max:30|min:1',
-            'status' => 'required',
+            'status_id' => 'required',
         ];
 
         $msgs = [
@@ -61,13 +66,15 @@ class ColetaResiduoController extends Controller
         $request->validate($regras, $msgs);
 
         $obj_geradorResiduo = GeradorResiduo::find($request->geradorResiduo_id);
+        $obj_residuo = Residuo::find($request->residuo_id);
+        $obj_status = Status::find($request->status_id);
 
-        if(isset($obj_geradorResiduo)){   
+        if(isset($obj_geradorResiduo,$obj_residuo, $obj_status)){   
             $obj_coletaResiduo = new ColetaResiduo();
             $obj_coletaResiduo -> geradorResiduo()->associate($obj_geradorResiduo);
-            $obj_coletaResiduo -> residuo = $request -> residuo;
+            $obj_coletaResiduo -> residuo()->associate($obj_residuo);
             $obj_coletaResiduo -> peso = $request -> peso;
-            $obj_coletaResiduo -> status = $request -> status;
+            $obj_coletaResiduo -> status()->associate($obj_status);
             $obj_coletaResiduo->save();
             return redirect()->route('coletaResiduos.create');
         }

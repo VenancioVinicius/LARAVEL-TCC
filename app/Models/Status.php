@@ -5,7 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Recebido extends Model
+class Status extends Model
 {
     use HasFactory;
+
+    public function coletaResiduo(){
+        return $this->hasMany('\App\Models\ColetaResiduo');
+    }
 }
