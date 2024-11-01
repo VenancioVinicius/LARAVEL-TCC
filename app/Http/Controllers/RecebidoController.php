@@ -70,7 +70,7 @@ class RecebidoController extends Controller
 
         $obj_coletaResiduo = ColetaResiduo::find($request->id);
 
-        return redirect()->route('recebidos.edit', compact('obj_coletaResiduo'));
+        return redirect()->route('recebidos.edit', $obj_coletaResiduo);
     }
 
     /**
@@ -97,6 +97,12 @@ class RecebidoController extends Controller
         }
 
         $dados = ColetaResiduo::find($id);
+        $dados_Cat = Catador::where('status', '=', 0)->get();
+        $dados_Sts = Status::where('id', '=', 2)->get();
+
+        if(!isset($dados)) { return "<h1>ID: $id não encontrado!</h1>"; }
+
+        return view('recebidos.edit', compact('dados', 'dados_Cat', 'dados_Sts')); 
     }
 
     /**
@@ -108,7 +114,25 @@ class RecebidoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $obj = ColetaResiduo::find($id);
+
+        if(!isset($obj)) { return "<h1>ID: $id não encontrado!"; }
+
+        $regras = [
+            'catador_id' => 'required',
+            'status_id' => 'required',
+        ];
+
+        $request->validate($regras);
+
+        $obj->fill([
+            'catador_id' => $request->catador_id,
+            'status_id' => $request->status_id,
+        ]);
+
+        $obj->save();
+
+        return redirect()->route('recebidos.index');
     }
 
     /**

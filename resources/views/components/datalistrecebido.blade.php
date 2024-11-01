@@ -23,7 +23,7 @@
                     <tr>
                         <td class="d-none d-md-table-cell">{{ $item[$header[0]] }}</td>
                         @isset($item->GeradorResiduo)<td>{{$item->GeradorResiduo->nome}}</td>@endisset
-                        <td class="d-none d-md-table-cell">{{ $item[$header[2]] }}</td>
+                        @isset($item->Catador)<td>{{$item->Catador->nome}}</td>@endisset
                         @isset($item->Residuo)<td>{{$item->Residuo->nome}}</td>@endisset
                         <td class="d-none d-md-table-cell">{{ $item[$header[4]] }}</td>
                         @isset($item->Status)<td>{{$item->Status->descricao}}</td>@endisset
