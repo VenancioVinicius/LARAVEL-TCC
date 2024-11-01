@@ -21,7 +21,7 @@ class ColetaResiduoController extends Controller
             abort(403);
         }
 
-        $dados = ColetaResiduo::all();
+        $dados = ColetaResiduo::where('status_id', '=', 1)->get();
         $permissions = session('user_permissions');
 
         return view('coletaResiduos.index', compact('dados', 'permissions'));

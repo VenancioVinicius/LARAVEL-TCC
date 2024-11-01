@@ -24,8 +24,9 @@
                         <td class="d-none d-md-table-cell">{{ $item[$header[0]] }}</td>
                         @isset($item->GeradorResiduo)<td>{{$item->GeradorResiduo->nome}}</td>@endisset
                         <td class="d-none d-md-table-cell">{{ $item[$header[2]] }}</td>
-                        <td class="d-none d-md-table-cell">{{ $item[$header[3]] }}</td>
+                        @isset($item->Residuo)<td>{{$item->Residuo->nome}}</td>@endisset
                         <td class="d-none d-md-table-cell">{{ $item[$header[4]] }}</td>
+                        @isset($item->Status)<td>{{$item->Status->descricao}}</td>@endisset
 
                         <td>
                             <a href= "{{ route($crud.'.edit', $item[$header[0]]) }}" class="btn btn-success">

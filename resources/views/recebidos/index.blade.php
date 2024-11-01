@@ -10,9 +10,9 @@
             <x-datalistrecebido
                 title="Em Atendimento" 
                 crud="coletaResiduos" 
-                :header="['id', 'gerador_residuo', 'residuo', 'peso', 'status', 'ações']" 
+                :header="['id', 'gerador_residuo', 'catador', 'residuo', 'peso', 'status', 'ações']" 
                 :data="$dados"
-                :hide="[true, true, true, true, false, false]" 
+                :hide="[true, true, true, true, true, false, false]" 
             /> 
         </div>
     </div>

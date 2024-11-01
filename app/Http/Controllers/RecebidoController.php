@@ -21,7 +21,7 @@ class RecebidoController extends Controller
             abort(403);
         }
 
-        $dados = ColetaResiduo::all();
+        $dados = ColetaResiduo::where('status_id', '=', 2)->get();
         $permissions = session('user_permissions');
 
         return view('recebidos.index', compact('dados', 'permissions'));
