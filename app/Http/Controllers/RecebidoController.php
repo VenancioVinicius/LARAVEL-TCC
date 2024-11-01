@@ -98,8 +98,12 @@ class RecebidoController extends Controller
 
         $dados = ColetaResiduo::find($id);
         $dados_Cat = Catador::where('status', '=', 0)->get();
-        $dados_Sts = Status::where('id', '=', 2)->get();
-
+        if ($dados['catador_id'] == null) {
+            $dados_Sts = Status::where('id', '=', 2)->get();
+        }else {
+            $dados_Sts = Status::where('id', '!=', 3)->get();
+        }
+        
         if(!isset($dados)) { return "<h1>ID: $id não encontrado!</h1>"; }
 
         return view('recebidos.edit', compact('dados', 'dados_Cat', 'dados_Sts')); 

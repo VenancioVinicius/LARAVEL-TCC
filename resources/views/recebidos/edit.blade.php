@@ -16,7 +16,7 @@
                     <label class="input-group-text" for="inputGroupSelect01" color="#00FF00">Catador a receber a coleta</label>
                     <select name="catador_id" class="form-control {{ $errors->has('catador_id') ? 'is-invalid' : '' }}">
                         @foreach ($dados_Cat as $key)
-                            <option value="{{ $key->id }}" @if($key->status == 0) selected="true" @endif>
+                            <option value="{{ $key->id }}" @if($key->status == 0 && $key->id == $dados['catador_id']) selected="true" @endif>
                                 {{ $key->nome }}
                             </option>
                         @endforeach
@@ -35,7 +35,7 @@
                     <label class="input-group-text" for="inputGroupSelect01" color="#00FF00">Status</label>
                     <select name="status_id" class="form-control {{ $errors->has('status_id') ? 'is-invalid' : '' }}">
                         @foreach ($dados_Sts as $key)
-                            <option value="{{ $key->id }}" @if($key->id == 2 && $key->id == $dados['status_id']) selected="true" @endif>
+                            <option value="{{ $key->id }}" @if($key->id == $dados['status_id']) selected="true" @endif>
                                 {{ $key->descricao }}
                             </option>
                         @endforeach
