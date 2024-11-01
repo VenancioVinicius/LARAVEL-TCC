@@ -11,52 +11,20 @@
             <div class="col" >
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01" color="#00FF00">Gerador de Resíduos</label>
-                    <select name="geradorResiduo_id" class="form-control {{ $errors->has('geradorResiduo_id') ? 'is-invalid' : '' }}">
-                        @foreach ($dados_GerRes as $key)
-                            <option value="{{ $key->id }}" @if($key->status == 0) selected="true" @endif>
-                                {{ $key->nome }}
+                    <select name="id" class="form-control {{ $errors->has('id') ? 'is-invalid' : '' }}">
+                        @foreach ($dados_ColRes as $key)
+                            <option value="{{ $key->id }}" @if($key->status_id == 1) selected="true" @endif>
+                                {{ $key->id }}
                             </option>
                         @endforeach
                     </select>
-                    @if($errors->has('geradorResiduo_id'))
+                    @if($errors->has('id'))
                         <div class='invalid-feedback'>
-                            {{ $errors->first('geradorResiduo_id') }}
+                            {{ $errors->first('id') }}
                         </div>
                     @endif
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col" >
-                <div class="input-group mb-3">
-                    <label class="input-group-text" for="inputGroupSelect01" color="#00FF00">Gerador de Resíduos</label>
-                    <select name="geradorResiduo_id" class="form-control {{ $errors->has('geradorResiduo_id') ? 'is-invalid' : '' }}">
-                        @foreach ($dados_GerRes as $key)
-                            <option value="{{ $key->id }}" @if($key->status == 0) selected="true" @endif>
-                                {{ $key->nome }}
-                            </option>
-                        @endforeach
-                    </select>
-                    @if($errors->has('geradorResiduo_id'))
-                        <div class='invalid-feedback'>
-                            {{ $errors->first('geradorResiduo_id') }}
-                        </div>
-                    @endif
-                </div>
-            </div>
-        </div>
-        <div class="btn-floating mb-3 btn-floating mb-3" data-toggle="buttons">
-            <label class="btn btn-secondary active {{ $errors->has('status') ? 'is-invalid' : '' }}">
-                <input type="radio" name="status" id="ativo" value="0"> Ativo
-            </label>
-            <label class="btn btn-secondary">
-                <input type="radio" name="status" id="inativo" value="1"> Inativo
-            </label>
-            @if($errors->has('status'))
-                <div class='invalid-feedback'>
-                    {{ $errors->first('status') }}
-                </div>
-            @endif
         </div>
         <div class="row">
             <div class="col">

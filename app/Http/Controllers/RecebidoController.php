@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Catador;
 use App\Models\Recebido;
 use App\Models\ColetaResiduo;
-
+use App\Models\GeradorResiduo;
+use App\Models\Status;
 use Illuminate\Http\Request;
 
 use function GuzzleHttp\Promise\all;
@@ -34,7 +37,16 @@ class RecebidoController extends Controller
      */
     public function create()
     {
-        //
+        if(!PermisssionController::isAuthorized('recebidos.create')){
+            abort(403);
+        }
+
+        $dados_ColRes = ColetaResiduo::where('status_id', '=', 1)->get();
+        $dados_GerRes = GeradorResiduo::where('status', '=', 0)->get();
+        $dados_Cat = Catador::where('status', '=', 0)->get();
+        $dados_Sts = Status::where('id', '=', 2)->get();
+
+        return view('recebidos.create', compact('dados_ColRes','dados_GerRes', 'dados_Cat', 'dados_Sts')); 
     }
 
     /**
@@ -45,7 +57,20 @@ class RecebidoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $regras = [
+            'id' => 'required',
+
+        ];
+
+        $msgs = [
+            "required" => "O preenchimento do campo [:attribute] é obrigatório!",
+        ];
+
+        $request->validate($regras, $msgs);
+
+        $obj_coletaResiduo = ColetaResiduo::find($request->id);
+
+        return redirect()->route('recebidos.edit', compact('obj_coletaResiduo'));
     }
 
     /**
@@ -67,7 +92,11 @@ class RecebidoController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(!PermisssionController::isAuthorized('recebidos.edit')){
+            abort(403);
+        }
+
+        $dados = ColetaResiduo::find($id);
     }
 
     /**

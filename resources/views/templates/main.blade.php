@@ -39,7 +39,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{{route('coletaResiduos.create') }}" class="dropdown-item">Nova/Inicia</a></li>
                                 <li><a href="{{route('coletaResiduos.index') }}" class="dropdown-item">Em Aberto</a></li>
-                                <li><a href="" class="dropdown-item">Recebida</a></li>
+                                <li><a href="{{route('recebidos.create') }}" class="dropdown-item">Recebida</a></li>
                                 <li><a href="{{route('recebidos.index') }}" class="dropdown-item">Em Atendimento</a></li>
                                 <li><a href="" class="dropdown-item">Recebido/Finalizado</a></li>
                             </ul>
