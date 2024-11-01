@@ -106,10 +106,12 @@ class ColetaResiduoController extends Controller
 
         $dados = ColetaResiduo::find($id);
         $dados_GerRes = GeradorResiduo::where('status', '=', 0)->get();
+        $dados_Res = Residuo::all();
+        $dados_Sts = Status::where('id', '=', 1)->get();
 
         if(!isset($dados)) { return "<h1>ID: $id não encontrado!</h1>"; }
 
-        return view('coletaResiduos.edit', compact('dados', 'dados_GerRes')); 
+        return view('coletaResiduos.edit', compact('dados', 'dados_GerRes', 'dados_Res', 'dados_Sts')); 
     }
 
     /**
@@ -127,9 +129,9 @@ class ColetaResiduoController extends Controller
 
         $regras = [
             'gerador_residuo_id' => 'required',
-            'residuo' => 'required|max:50|min:1',
+            'residuo_id' => 'required|max:50|min:1',
             'peso' => 'required|max:30|min:1',
-            'status' => 'required',
+            'status_id' => 'required',
         ];
 
         $msgs = [
@@ -142,9 +144,9 @@ class ColetaResiduoController extends Controller
 
         $obj->fill([
             'gerador_residuo_id' => $request->gerador_residuo_id,
-            'residuo' => $request->residuo,
+            'residuo_id' => $request->residuo_id,
             'peso' => $request->peso,
-            'status' => $request->status,
+            'status_id' => $request->status_id,
         ]);
 
         $obj->save();
