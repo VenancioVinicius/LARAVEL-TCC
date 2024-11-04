@@ -31,6 +31,16 @@ class StatusSeeder extends Seeder
                 'descricao' => 'Finalizado'
             ],
 
+            [
+                'id' => '4',
+                'descricao' => 'Ativo'
+            ],
+
+            [
+                'id' => '5',
+                'descricao' => 'Inativo'
+            ],
+
         ]);
     }
 }
