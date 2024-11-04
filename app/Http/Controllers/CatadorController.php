@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Catador;
-
+use App\Models\Status;
 use Illuminate\Http\Request;
 
 class CatadorController extends Controller
@@ -35,8 +35,9 @@ class CatadorController extends Controller
         if(!PermisssionController::isAuthorized('catadors.create')){
             abort(403);
         }
+        $dados_Sts = Status::where('id', '>=', 4)->get();
 
-        return view('catadors.create');
+        return view('catadors.create', compact('dados_Sts'));
     }
 
     /**
@@ -52,7 +53,7 @@ class CatadorController extends Controller
             'nome' => 'required|max:50|min:4',
             'cep' => 'required|max:50|min:4',
             'telefone' => 'required|max:11|min:9',
-            'status' => 'required',
+            'status_id' => 'required',
         ];
 
         $msgs = [
@@ -64,14 +65,17 @@ class CatadorController extends Controller
 
         $request->validate($regras, $msgs);
 
-        Catador::create([
-            'nome' => mb_strtoupper($request->nome, 'UTF-8'),
-            'cep' => $request->cep,
-            'telefone' => $request->telefone,
-            'status' => $request->status,
-        ]);
+        $obj_status = Status::find($request->status_id);
 
-        return redirect()->route('catadors.index');
+        if(isset($obj_status)){   
+            $obj_catador = new Catador();
+            $obj_catador -> nome = $request -> nome;
+            $obj_catador -> cep = $request -> cep;
+            $obj_catador -> telefone = $request -> telefone;
+            $obj_catador -> status()->associate($obj_status);
+            $obj_catador->save();
+            return redirect()->route('catadors.index');
+        }
     }
 
     /**
@@ -98,10 +102,11 @@ class CatadorController extends Controller
         }
 
         $dados = Catador::find($id);
+        $dados_Sts = Status::where('id', '>=', 4)->get();
 
         if(!isset($dados)) { return "<h1>ID: $id não encontrado!</h1>"; }
 
-        return view('catadors.edit', compact('dados')); 
+        return view('catadors.edit', compact('dados', 'dados_Sts')); 
     }
 
     /**
@@ -121,7 +126,7 @@ class CatadorController extends Controller
             'nome' => mb_strtoupper($request->nome, 'UTF-8'),
             'cep' => $request->cep,
             'telefone' => $request->telefone,
-            'status' => $request->status
+            'status_id' => $request->status_id,
         ]);
 
         $obj->save();

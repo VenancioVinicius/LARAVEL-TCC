@@ -50,13 +50,24 @@
             </div>
         </div>
     </div>
-    <div class="btn-floating mb-3 btn-floating mb-3" data-toggle="buttons">
-        <label class="btn btn-secondary active">
-            <input type="radio" name="status" id="ativo" value="0"> Ativo
-        </label>
-        <label class="btn btn-secondary">
-            <input type="radio" name="status" id="inativo" value="1"> Inativo
-        </label>
+    <div class="row">
+        <div class="col" >
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01" color="#00FF00">Status</label>
+                <select name="status_id" class="form-control {{ $errors->has('status_id') ? 'is-invalid' : '' }}">
+                    @foreach ($dados_Sts as $key)
+                        <option value="{{ $key->id }}" @if($key->id == $dados['status_id']) selected="true" @endif>
+                            {{ $key->descricao }}
+                        </option>
+                    @endforeach
+                </select>
+                @if($errors->has('status_id'))
+                    <div class='invalid-feedback'>
+                        {{ $errors->first('status_id') }}
+                    </div>
+                @endif
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col">

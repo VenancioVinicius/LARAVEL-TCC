@@ -75,8 +75,6 @@ class GeradorResiduoController extends Controller
             $obj_geradorResiduo->save();
             return redirect()->route('geradorResiduos.index');
         }
-
-        return redirect()->route('geradorResiduos.index');
     }
 
     /**
@@ -103,10 +101,11 @@ class GeradorResiduoController extends Controller
         }
 
         $dados = GeradorResiduo::find($id);
+        $dados_Sts = Status::where('id', '>=', 4)->get();
 
         if(!isset($dados)) { return "<h1>ID: $id não encontrado!</h1>"; }
 
-        return view('geradorResiduos.edit', compact('dados')); 
+        return view('geradorResiduos.edit', compact('dados', 'dados_Sts')); 
     }
 
     /**
@@ -126,7 +125,7 @@ class GeradorResiduoController extends Controller
             'nome' => mb_strtoupper($request->nome, 'UTF-8'),
             'cep' => $request->cep,
             'telefone' => $request->telefone,
-            'status' => $request->status
+            'status_id' => $request->status_id,
         ]);
 
         $obj->save();

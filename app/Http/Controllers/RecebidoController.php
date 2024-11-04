@@ -42,8 +42,8 @@ class RecebidoController extends Controller
         }
 
         $dados_ColRes = ColetaResiduo::where('status_id', '=', 1)->get();
-        $dados_GerRes = GeradorResiduo::where('status', '=', 0)->get();
-        $dados_Cat = Catador::where('status', '=', 0)->get();
+        $dados_GerRes = GeradorResiduo::where('status_id', '=', 4)->get();
+        $dados_Cat = Catador::where('status_id', '=', 4)->get();
         $dados_Sts = Status::where('id', '=', 2)->get();
 
         return view('recebidos.create', compact('dados_ColRes','dados_GerRes', 'dados_Cat', 'dados_Sts')); 
@@ -97,11 +97,11 @@ class RecebidoController extends Controller
         }
 
         $dados = ColetaResiduo::find($id);
-        $dados_Cat = Catador::where('status', '=', 0)->get();
+        $dados_Cat = Catador::where('status_id', '=', 4)->get();
         if ($dados['catador_id'] == null) {
             $dados_Sts = Status::where('id', '=', 2)->get();
         }else {
-            $dados_Sts = Status::all();
+            $dados_Sts = Status::where('id', '<=', 3)->get();
         }
         
         if(!isset($dados)) { return "<h1>ID: $id não encontrado!</h1>"; }

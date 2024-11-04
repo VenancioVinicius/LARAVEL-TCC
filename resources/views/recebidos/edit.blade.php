@@ -16,7 +16,7 @@
                     <label class="input-group-text" for="inputGroupSelect01" color="#00FF00">Catador a receber a coleta</label>
                     <select name="catador_id" class="form-control {{ $errors->has('catador_id') ? 'is-invalid' : '' }}">
                         @foreach ($dados_Cat as $key)
-                            <option value="{{ $key->id }}" @if($key->status == 0 && $key->id == $dados['catador_id']) selected="true" @endif>
+                            <option value="{{ $key->id }}" @if($key->status_id == 4 && $key->id == $dados['catador_id']) selected="true" @endif>
                                 {{ $key->nome }}
                             </option>
                         @endforeach
