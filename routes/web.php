@@ -25,5 +25,6 @@ Route::resource('geradorResiduos', 'GeradorResiduoController')->middleware(['aut
 Route::resource('coletaResiduos', 'ColetaResiduoController')->middleware(['auth']);
 Route::resource('catadors', 'CatadorController')->middleware(['auth']);
 Route::resource('recebidos', 'RecebidoController')->middleware(['auth']);
+Route::resource('finalizados', 'FinalizadoController')->middleware(['auth']);
 
 require __DIR__.'/auth.php';
