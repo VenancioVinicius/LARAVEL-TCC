@@ -147,6 +147,8 @@ class RecebidoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ColetaResiduo::destroy($id);
+
+        return redirect()->route('recebidos.index');
     }
 }
