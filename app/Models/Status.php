@@ -12,4 +12,12 @@ class Status extends Model
     public function coletaResiduo(){
         return $this->hasMany('\App\Models\ColetaResiduo');
     }
+
+    public function catador(){
+        return $this->hasMany('\App\Models\Catador');
+    }
+
+    public function geradorResiduo(){
+        return $this->hasMany('\App\Models\GeradorResiduo');
+    }
 }

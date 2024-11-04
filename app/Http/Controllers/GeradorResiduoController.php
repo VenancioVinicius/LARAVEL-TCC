@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\GeradorResiduo;
-
+use App\Models\Status;
 use Illuminate\Http\Request;
 
 class GeradorResiduoController extends Controller
@@ -34,8 +34,9 @@ class GeradorResiduoController extends Controller
         if(!PermisssionController::isAuthorized('geradorResiduos.create')) {
             abort(403);
         }
+        $dados_Sts = Status::where('id', '>=', 4)->get();
 
-        return view('geradorResiduos.create');
+        return view('geradorResiduos.create', compact('dados_Sts'));
     }
 
     /**
@@ -51,7 +52,7 @@ class GeradorResiduoController extends Controller
             'nome' => 'required|max:50|min:4',
             'cep' => 'required|max:50|min:4',
             'telefone' => 'required|max:11|min:9',
-            'status' => 'required',
+            'status_id' => 'required',
         ];
 
         $msgs = [
@@ -63,12 +64,17 @@ class GeradorResiduoController extends Controller
 
         $request->validate($regras, $msgs);
 
-        GeradorResiduo::create([
-            'nome' => mb_strtoupper($request->nome, 'UTF-8'),
-            'cep' => $request->cep,
-            'telefone' => $request->telefone,
-            'status' => $request->status,
-        ]);
+        $obj_status = Status::find($request->status_id);
+
+        if(isset($obj_status)){   
+            $obj_geradorResiduo = new GeradorResiduo();
+            $obj_geradorResiduo -> nome = $request -> nome;
+            $obj_geradorResiduo -> cep = $request -> cep;
+            $obj_geradorResiduo -> telefone = $request -> telefone;
+            $obj_geradorResiduo -> status()->associate($obj_status);
+            $obj_geradorResiduo->save();
+            return redirect()->route('geradorResiduos.index');
+        }
 
         return redirect()->route('geradorResiduos.index');
     }

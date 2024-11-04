@@ -15,5 +15,9 @@ class Catador extends Model
         return $this->hasMany('\App\Models\ColetaResiduo');
     }
 
-    protected $fillable = ['nome', 'cep', 'telefone', 'status'];
+    public function status(){
+        return $this->belongsTo('\App\Models\Status');
+    }
+
+    protected $fillable = ['nome', 'cep', 'telefone', 'status_id'];
 }

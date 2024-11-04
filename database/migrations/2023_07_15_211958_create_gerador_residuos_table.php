@@ -18,7 +18,7 @@ class CreateGeradorResiduosTable extends Migration
             $table->string('nome');
             $table->string('cep');
             $table->bigInteger('telefone');
-            $table->integer('status');
+            $table->unsignedBigInteger('status_id')->references('id')->on('status');
             $table->softDeletes();
             $table->timestamps();
         });
