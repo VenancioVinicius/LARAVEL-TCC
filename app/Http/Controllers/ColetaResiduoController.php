@@ -105,7 +105,7 @@ class ColetaResiduoController extends Controller
         }
 
         $dados = ColetaResiduo::find($id);
-        $dados_GerRes = GeradorResiduo::where('status', '=', 0)->get();
+        $dados_GerRes = GeradorResiduo::where('status_id', '=', 4)->get();
         $dados_Res = Residuo::all();
         $dados_Sts = Status::where('id', '=', 1)->get();
 

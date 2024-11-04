@@ -16,7 +16,7 @@
                     <label class="input-group-text" for="inputGroupSelect01" color="#00FF00">Gerador de Resíduos</label>
                     <select name="gerador_residuo_id" class="form-control {{ $errors->has('gerador_residuo_id') ? 'is-invalid' : '' }}">
                         @foreach ($dados_GerRes as $key)
-                            <option value="{{ $key->id }}" @if($key->status == 0 && $key->id == $dados['gerador_residuo_id']) selected="true" @endif>
+                            <option value="{{ $key->id }}" @if($key->status_id == 4 && $key->id == $dados['gerador_residuo_id']) selected="true" @endif>
                                 {{ $key->nome }}
                             </option>
                         @endforeach
