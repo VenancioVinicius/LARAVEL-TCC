@@ -101,7 +101,7 @@ class RecebidoController extends Controller
         if ($dados['catador_id'] == null) {
             $dados_Sts = Status::where('id', '=', 2)->get();
         }else {
-            $dados_Sts = Status::where('id', '!=', 3)->get();
+            $dados_Sts = Status::all();
         }
         
         if(!isset($dados)) { return "<h1>ID: $id não encontrado!</h1>"; }
